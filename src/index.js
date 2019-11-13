@@ -1,30 +1,26 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import ReactDOM from "react-dom";
 import axios from "axios";
 
+import Articles from './components/Articles';
 import Charts from "./components/Charts";
 import Navbar from "./components/Navbar";
 
 import "./styles.scss";
 
-const App = () => {
-  const [coinData, setCoinData] = useState([]);
+//f34a6db149d8414898913c743dab5662 
 
-  useEffect(() => {
-    axios
-      .get(
-        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=true"
-      )
-      .then(res => setCoinData(res.data))
-      .catch(err => console.log(err));
-  }, []);
+const App = () => {
   return (
     <div className="App">
       <Navbar />
-      <Charts coinData={coinData} />
+      {/* <Charts coinData={coinData} /> */}
+      <Route exact path="/" component={Articles} />
+      <Route path="/charts" component={Charts} />
     </div>
   );
 };
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+ReactDOM.render(<Router><App /></Router>, rootElement);
