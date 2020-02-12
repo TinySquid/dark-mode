@@ -8,7 +8,7 @@ const Articles = () => {
 
   useEffect(() => {
     console.log('Called news api')
-    axios.get('https://newsapi.org/v2/everything?q=+bitcoin&from=2019-10-30&language=en&sortBy=popularity&pageSize=10&apiKey=f34a6db149d8414898913c743dab5662')
+    axios.get('https://newsapi.org/v2/everything?q=bitcoin&from=2020-01-12&sortBy=publishedAt&apiKey=f34a6db149d8414898913c743dab5662')
       .then(response => {
         console.log(response);
         setArticles(response.data.articles);
